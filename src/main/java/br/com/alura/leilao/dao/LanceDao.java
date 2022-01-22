@@ -3,6 +3,7 @@ package br.com.alura.leilao.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.alura.leilao.model.Lance;
@@ -11,8 +12,12 @@ import br.com.alura.leilao.model.Leilao;
 @Repository
 public class LanceDao {
 
-	@PersistenceContext
 	private EntityManager em;
+
+	@Autowired
+	public LanceDao(EntityManager entityManager) {
+		this.em = entityManager;
+	}
 
 	public void salvar(Lance lance) {
 		em.persist(lance);
